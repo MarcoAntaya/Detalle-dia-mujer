@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="icon" href="img/flowers.png" type="image/x-icon" />
+    <title>Una Carta para Ti</title>
+    <style>
+        @keyframes floatUp {
+            0% { transform: translateY(100vh); opacity: 0; }
+            100% { transform: translateY(-10vh); opacity: 1; }
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fef3f3;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+        h1 {
+            font-size: 2rem;
+            color: #d6336c;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: none;
+            margin: 1rem auto;
+        }
+        .btn {
+            background-color: #d6336c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        #letter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #content {
+            display: none;
+        }
+        .floating-objects {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #d6336c;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: floatUp 10s infinite ease-in-out;
+        }
+
+        .foto{
+          width: 250px;
+        }
+    </style>
+
+  </head>
+  <body class="container">
+    <audio src="sound/Audio_Rauw.mp3" autoplay></audio>
+    <div id="lyrics">
+    </div>
+    
+    <div class="container" id="letter">
+      <h1>Las flores se pueden marchitar, los chocolates acabarse, pero esto estará siempre para ti, para que lo veas cuando desees!!!</h1>
+      <p>...</p>
+      <button class="btn" onclick="openLetter()">Presiona acá Orejitas</button>
+  </div>
+
+  <div class="container" id="content">
+      <h1>Para Ti...</h1>
+      <p>Para la mujer que disfruta cosas simples como compartir un helado y una charla en la banca de un parque, con mucho cariño para ti, eres y seguirás siendo una gran mujer.</p>
+      <img class="foto" id="photo" src="img/Jackelyn.jpeg" alt="Un momento especial juntos">
+      <button class="btn" onclick="showPhoto()">Un pequeño recuerdo</button>
+  </div>
+
+  <script>
+      function openLetter() {
+          document.getElementById('letter').style.display = 'none';
+          document.getElementById('content').style.display = 'block';
+          createFloatingObjects();
+          document.getElementById('song').play();
+      }
+
+      function showPhoto() {
+          document.getElementById('photo').style.display = 'block';
+      }
+
+      function createFloatingObjects() {
+          for (let i = 0; i < 30; i++) {
+              let obj = document.createElement('div');
+              obj.classList.add('floating-objects');
+              obj.style.left = Math.random() * 100 + 'vw';
+              obj.style.animationDuration = Math.random() * 5 + 5 + 's';
+              document.body.appendChild(obj);
+          }
+      }
+  </script>
+
+
+  </body>
+</html>
